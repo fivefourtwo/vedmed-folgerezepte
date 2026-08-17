@@ -158,6 +158,18 @@ export default function Step2Pharmacy({ data, onChange, onBack, onNext }) {
                 Bitte wählen Sie Abholung oder Lieferung.
               </p>
             )}
+
+            {/* Payment timing — only relevant for delivery, extends the "request, not order" principle to money */}
+            {data.deliveryType === 'delivery' && (
+              <div className="border-l-4 border-teal-500 bg-teal-50 rounded-r-lg px-4 py-3 mt-3">
+                <p className="text-sm text-stone-800 leading-relaxed">
+                  <strong>Bezahlt wird erst später.</strong> Wenn das Rezept
+                  ausgestellt ist und die Apotheke den Auftrag annimmt,
+                  bekommen Sie eine E-Mail mit dem Zahlungslink. Vorher
+                  entstehen keine Kosten.
+                </p>
+              </div>
+            )}
           </div>
         )}
 

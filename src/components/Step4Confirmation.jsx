@@ -117,8 +117,9 @@ export default function Step4Confirmation({
               <p className="text-sm text-stone-700 leading-relaxed">
                 {isDelivery ? (
                   <>
-                    Die Apotheke schickt <strong>{petData.medication}</strong>{' '}
-                    an Sie los. Sie bekommen eine Versandbestätigung.
+                    Nimmt die Apotheke den Auftrag an, bekommen Sie eine
+                    E-Mail mit dem Zahlungslink. Nach der Zahlung geht{' '}
+                    <strong>{petData.medication}</strong> per Post an Sie raus.
                   </>
                 ) : (
                   <>
@@ -266,6 +267,14 @@ export default function Step4Confirmation({
                 {pharmacy?.name} · {isDelivery ? 'Versand' : 'Abholung'}
               </dd>
             </div>
+            {isDelivery && (
+              <div className="flex gap-3">
+                <dt className="text-stone-400 w-24 flex-shrink-0">Lieferung an</dt>
+                <dd className="text-stone-800">
+                  {contactData.street}, {contactData.zip} {contactData.city}
+                </dd>
+              </div>
+            )}
           </dl>
         </div>
       </div>

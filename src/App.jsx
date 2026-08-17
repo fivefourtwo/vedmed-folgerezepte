@@ -13,7 +13,14 @@ export default function App() {
   const [selectedPractice, setSelectedPractice] = useState(null)
   const [petData, setPetData] = useState({ name: '', type: '', medication: '', amount: '', dosage: '' })
   const [pharmacyData, setPharmacyData] = useState({ pharmacyId: null, deliveryType: null })
-  const [contactData, setContactData] = useState({ name: '', email: '', phone: '' })
+  const [contactData, setContactData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    street: '',
+    zip: '',
+    city: '',
+  })
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans">
@@ -85,6 +92,7 @@ export default function App() {
           <Step3Contact
             data={contactData}
             onChange={setContactData}
+            isDelivery={pharmacyData.deliveryType === 'delivery'}
             onBack={() => setStep(2)}
             onNext={() => {
               track('anfrage_abgeschickt')
