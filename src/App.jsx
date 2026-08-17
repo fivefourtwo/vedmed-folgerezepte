@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { PawPrint } from 'lucide-react'
 import ProgressBar from './components/ProgressBar'
 import Step0Search from './components/Step0Search'
@@ -48,6 +49,7 @@ export default function App() {
         {step === 0 && (
           <Step0Search
             onSelect={(practice) => {
+              track('praxis_gewaehlt')
               setSelectedPractice(practice)
               setStep(1)
             }}
@@ -60,7 +62,10 @@ export default function App() {
             data={petData}
             onChange={setPetData}
             onBack={() => setStep(0)}
-            onNext={() => setStep(2)}
+            onNext={() => {
+              track('tier_und_medikament_angegeben')
+              setStep(2)
+            }}
           />
         )}
 
@@ -69,7 +74,10 @@ export default function App() {
             data={pharmacyData}
             onChange={setPharmacyData}
             onBack={() => setStep(1)}
-            onNext={() => setStep(3)}
+            onNext={() => {
+              track('apotheke_gewaehlt')
+              setStep(3)
+            }}
           />
         )}
 
@@ -78,7 +86,10 @@ export default function App() {
             data={contactData}
             onChange={setContactData}
             onBack={() => setStep(2)}
-            onNext={() => setStep(4)}
+            onNext={() => {
+              track('anfrage_abgeschickt')
+              setStep(4)
+            }}
           />
         )}
 

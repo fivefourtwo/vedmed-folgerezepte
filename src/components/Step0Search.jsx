@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { Search, MapPin, CheckCircle, ArrowRight, Check } from 'lucide-react'
 import { PRACTICES } from '../data'
 
@@ -23,6 +24,7 @@ export default function Step0Search({ onSelect }) {
 
   const handleInviteSubmit = (e) => {
     e.preventDefault()
+    track('praxis_eingeladen')
     setInviteSent(true)
   }
 

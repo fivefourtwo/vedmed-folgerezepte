@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { CheckCircle, Clock, User, QrCode, UserRound } from 'lucide-react'
 import { PHARMACIES } from '../data'
 
@@ -59,6 +60,11 @@ export default function Step4Confirmation({
   contactData,
 }) {
   const [saveChoice, setSaveChoice] = useState(null)
+
+  const chooseSave = (choice) => {
+    track('daten_gesichert', { art: choice })
+    setSaveChoice(choice)
+  }
 
   const pharmacy = PHARMACIES.find((p) => p.id === pharmacyData.pharmacyId)
   const isDelivery = pharmacyData.deliveryType === 'delivery'
@@ -170,7 +176,7 @@ export default function Step4Confirmation({
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
-              onClick={() => setSaveChoice('profile')}
+              onClick={() => chooseSave('profile')}
               className={`flex flex-col items-start gap-2 p-4 border rounded-xl text-left transition-colors ${
                 saveChoice === 'profile'
                   ? 'border-teal-500 bg-teal-50'
@@ -189,7 +195,7 @@ export default function Step4Confirmation({
 
             <button
               type="button"
-              onClick={() => setSaveChoice('qr')}
+              onClick={() => chooseSave('qr')}
               className={`flex flex-col items-start gap-2 p-4 border rounded-xl text-left transition-colors ${
                 saveChoice === 'qr'
                   ? 'border-teal-500 bg-teal-50'
